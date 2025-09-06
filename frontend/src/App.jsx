@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import CategoryList from './CategoryList/CategoryList';
+import VideoCarousel from './VideoCarousel/VideoCarousel';
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -12,7 +13,7 @@ function App() {
       setCategories(data);
       setSelectedCategory(data[0]);
     } catch (error) {
-      console.log('error fetching categories');
+      console.log('error fetching categories:', error);
     }
   };
 
@@ -27,6 +28,7 @@ function App() {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
+      <VideoCarousel selectedCategory={selectedCategory}></VideoCarousel>
     </>
   );
 }
