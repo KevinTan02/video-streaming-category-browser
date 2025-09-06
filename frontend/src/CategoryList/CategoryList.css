@@ -1,0 +1,16 @@
+.category-list {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+button {
+  min-width: 15rem;
+  min-height: 6rem;
+}
+
+button.selected {
+  border: 2px solid orange; /* TODO: make button outline something that looks better */
+}
