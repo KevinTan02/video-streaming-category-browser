@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import CategoryList from './CategoryList/CategoryList';
 import VideoCarousel from './VideoCarousel/VideoCarousel';
+import './App.css';
 
 function App() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedVideoId, setSelectedVideoId] = useState();
+  const [isVideoDetailsModalOpen, setIsVideoDetailModalOpen] = useState(false);
 
   const fetchCategories = async () => {
     try {
@@ -22,14 +25,18 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="home-container">
       <CategoryList
         categories={categories}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      <VideoCarousel selectedCategory={selectedCategory}></VideoCarousel>
-    </>
+      <VideoCarousel
+        selectedCategory={selectedCategory}
+        selectedVideoId={selectedVideoId}
+        setSelectedVideoId={setSelectedVideoId}
+      />
+    </div>
   );
 }
 

@@ -9,8 +9,8 @@ const CategoryList = (props) => {
   };
 
   return (
-    <>
-      <h2>Categories</h2>
+    <div>
+      <h2 className="category-list-title">Categories</h2>
       <div className="category-list">
         {categories.map((category) => (
           <button
@@ -23,7 +23,7 @@ const CategoryList = (props) => {
           </button>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

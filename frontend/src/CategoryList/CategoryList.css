@@ -1,16 +1,21 @@
+.category-list-title {
+  text-align: center;
+}
+
 .category-list {
   display: flex;
   flex-direction: row;
   gap: 1rem;
   overflow-x: auto;
   flex-wrap: nowrap;
+  justify-content: center;
 }
 
-button {
+.category-list button {
   min-width: 15rem;
   min-height: 6rem;
 }
 
-button.selected {
-  border: 2px solid orange; /* TODO: make button outline something that looks better */
+.category-list button.selected {
+  border: 5px solid orange; /* TODO: make button outline something that looks better */
 }

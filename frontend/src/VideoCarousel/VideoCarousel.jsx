@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './VideoCarousel.css';
 
 const VideoCarousel = (props) => {
-  const { selectedCategory } = props;
+  const { selectedCategory, selectedVideoId, setSelectedVideoId } = props;
   const [videos, setVideos] = useState([]);
 
   const fetchVideosFromCategory = async () => {
@@ -21,11 +21,22 @@ const VideoCarousel = (props) => {
     fetchVideosFromCategory();
   }, [selectedCategory]);
 
+  const handleVideoClick = (e) => {
+    setSelectedVideoId(parseInt(e.target.value));
+  };
+
   return (
     <div className="carousel-container">
-      {videos.map((video) => {
-        return <button>{video.title}</button>;
-      })}
+      {videos.map((video) => (
+        <button
+          key={video.id}
+          className={video.id === selectedVideoId ? 'selected' : ''}
+          onClick={handleVideoClick}
+          value={video.id}
+        >
+          {video.title}
+        </button>
+      ))}
     </div>
   );
 };
