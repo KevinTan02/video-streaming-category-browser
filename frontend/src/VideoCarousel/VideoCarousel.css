@@ -1,6 +1,12 @@
 .carousel-container {
   display: flex;
   flex-direction: row;
+  gap: 1rem;
+}
+
+.videos-container {
+  display: flex;
+  flex-direction: row;
   overflow-x: auto;
   flex-wrap: nowrap;
   gap: 1rem;

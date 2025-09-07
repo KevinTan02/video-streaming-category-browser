@@ -30,12 +30,14 @@ function App() {
         categories={categories}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
+        setSelectedVideoId={setSelectedVideoId}
       />
       <VideoCarousel
         selectedCategory={selectedCategory}
         selectedVideoId={selectedVideoId}
         setSelectedVideoId={setSelectedVideoId}
       />
+      {isVideoDetailsModalOpen && <VideoDetailsModal />}
     </div>
   );
 }

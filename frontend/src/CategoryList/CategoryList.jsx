@@ -1,10 +1,17 @@
 import './CategoryList.css';
 
 const CategoryList = (props) => {
-  const { categories, selectedCategory, setSelectedCategory } = props;
+  const {
+    categories,
+    selectedCategory,
+    setSelectedCategory,
+    setSelectedVideoId,
+  } = props;
 
   const handleCategoryClick = (e) => {
-    console.log('category button click! e.target.value:', e.target.value);
+    if (e.target.value !== selectedCategory) {
+      setSelectedVideoId();
+    }
     setSelectedCategory(e.target.value);
   };
 
