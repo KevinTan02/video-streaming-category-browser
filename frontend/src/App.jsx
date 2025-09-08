@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import CategoryList from './CategoryList/CategoryList';
 import VideoCarousel from './VideoCarousel/VideoCarousel';
+import VideoDetailsModal from './VideoDetailsModal/VideoDetailsModal';
 import './App.css';
 
 function App() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState();
   const [selectedVideoId, setSelectedVideoId] = useState();
-  const [isVideoDetailsModalOpen, setIsVideoDetailModalOpen] = useState(false);
 
   const fetchCategories = async () => {
     try {
@@ -25,20 +25,33 @@ function App() {
   }, []);
 
   return (
-    <div className="home-container">
-      <CategoryList
-        categories={categories}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        setSelectedVideoId={setSelectedVideoId}
-      />
-      <VideoCarousel
-        selectedCategory={selectedCategory}
-        selectedVideoId={selectedVideoId}
-        setSelectedVideoId={setSelectedVideoId}
-      />
-      {isVideoDetailsModalOpen && <VideoDetailsModal />}
-    </div>
+    <>
+      <div className="home-container">
+        <CategoryList
+          categories={categories}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          setSelectedVideoId={setSelectedVideoId}
+        />
+        <VideoCarousel
+          selectedCategory={selectedCategory}
+          selectedVideoId={selectedVideoId}
+          setSelectedVideoId={setSelectedVideoId}
+        />
+        {selectedVideoId && (
+          <>
+            <div
+              className="dim-overlay"
+              onClick={() => setSelectedVideoId()}
+            ></div>
+            <VideoDetailsModal
+              selectedVideoId={selectedVideoId}
+              setSelectedVideoId={setSelectedVideoId}
+            />
+          </>
+        )}
+      </div>
+    </>
   );
 }
 

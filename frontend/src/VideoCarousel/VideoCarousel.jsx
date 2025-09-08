@@ -6,7 +6,7 @@ const VideoCarousel = (props) => {
   const [videos, setVideos] = useState([]);
   const carouselRef = useRef(null);
 
-  const fetchVideosFromCategory = async () => {
+  const getVideosFromCategory = async () => {
     try {
       const response = await fetch(
         `http://localhost:3001/videos?category=${selectedCategory}`
@@ -19,7 +19,7 @@ const VideoCarousel = (props) => {
   };
 
   useEffect(() => {
-    fetchVideosFromCategory();
+    getVideosFromCategory();
   }, [selectedCategory]);
 
   const handleVideoClick = (e) => {
@@ -49,7 +49,7 @@ const VideoCarousel = (props) => {
             onClick={handleVideoClick}
             value={video.id}
           >
-            {video.title}
+            {video.thumbnail}
           </button>
         ))}
       </div>

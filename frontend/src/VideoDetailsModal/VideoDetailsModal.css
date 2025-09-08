@@ -1,0 +1,52 @@
+.video-details-modal-container {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  z-index: 100;
+  border: 0.1rem solid white;
+  border-radius: 1rem;
+  background-color: black;
+}
+
+.header {
+  display: flex;
+  align-items: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 50%;
+}
+
+.video-details {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-left: 1rem;
+}
+
+.video-details .label {
+  font-weight: bold;
+}
+
+.play-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.play-button {
+  position: relative;
+  border: none;
+  color: white;
+  background-color: transparent;
+  font-size: 10rem;
+}
