@@ -64,7 +64,7 @@ const VideoDetailsModal = (props) => {
                 className="play-button"
                 onClick={() => setIsPlaying(true)}
               >
-                &#9658;
+                ⏵
               </button>
             )}
           </div>
