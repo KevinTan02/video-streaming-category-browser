@@ -1,26 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
+import { useRef } from 'react';
 import './VideoCarousel.css';
 
 const VideoCarousel = (props) => {
-  const { selectedCategory, selectedVideoId, setSelectedVideoId } = props;
-  const [videos, setVideos] = useState([]);
+  const { setSelectedVideoId, videos } = props;
   const carouselRef = useRef(null);
-
-  const getVideosFromCategory = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:3001/videos?category=${selectedCategory}`
-      );
-      const data = await response.json();
-      setVideos(data);
-    } catch (error) {
-      console.log('unable to fetch videos:', error);
-    }
-  };
-
-  useEffect(() => {
-    getVideosFromCategory();
-  }, [selectedCategory]);
 
   const handleVideoClick = (e) => {
     setSelectedVideoId(parseInt(e.target.value));
@@ -38,23 +21,18 @@ const VideoCarousel = (props) => {
 
   return (
     <div className="carousel-container">
-      <button className="scroll-btn left" onClick={scrollLeft}>
-        &#8249;
+      <button className="scroll-btn-left" onClick={scrollLeft}>
+        ←
       </button>
       <div className="videos-container" ref={carouselRef}>
         {videos.map((video) => (
-          <button
-            key={video.id}
-            className={video.id === selectedVideoId ? 'selected' : ''}
-            onClick={handleVideoClick}
-            value={video.id}
-          >
+          <button key={video.id} onClick={handleVideoClick} value={video.id}>
             {video.thumbnail}
           </button>
         ))}
       </div>
-      <button className="scroll-btn right" onClick={scrollRight}>
-        &#8250;
+      <button className="scroll-btn-right" onClick={scrollRight}>
+        →
       </button>
     </div>
   );

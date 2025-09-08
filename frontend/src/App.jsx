@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import CategoryList from './CategoryList/CategoryList';
-import VideoCarousel from './VideoCarousel/VideoCarousel';
 import VideoDetailsModal from './VideoDetailsModal/VideoDetailsModal';
+import SearchBar from './SearchBar/SearchBar';
+import SearchResults from './SearchResults/SearchResults';
 import './App.css';
 
 function App() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState();
   const [selectedVideoId, setSelectedVideoId] = useState();
+  const [searchQuery, setSearchQuery] = useState('');
 
   const fetchCategories = async () => {
     try {
@@ -27,17 +29,28 @@ function App() {
   return (
     <>
       <div className="home-container">
-        <CategoryList
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          setSelectedVideoId={setSelectedVideoId}
-        />
-        <VideoCarousel
-          selectedCategory={selectedCategory}
-          selectedVideoId={selectedVideoId}
-          setSelectedVideoId={setSelectedVideoId}
-        />
+        <SearchBar setSearchQuery={setSearchQuery} />
+        {searchQuery ? (
+          <SearchResults
+            setSelectedVideoId={setSelectedVideoId}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+        ) : (
+          <>
+            {categories.length === 0 ? (
+              <div> Loading Categories...</div>
+            ) : (
+              <CategoryList
+                categories={categories}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                selectedVideoId={selectedVideoId}
+                setSelectedVideoId={setSelectedVideoId}
+              />
+            )}
+          </>
+        )}
         {selectedVideoId && (
           <>
             <div

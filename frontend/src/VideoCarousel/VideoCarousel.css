@@ -17,7 +17,3 @@
   min-width: 7.5rem;
   min-height: 3rem;
 }
-
-.carousel-container button.selected {
-  border: 5px solid red; /* TODO: make button outline something that looks better */
-}

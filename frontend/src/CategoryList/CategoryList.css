@@ -1,5 +1,7 @@
-.category-list-title {
-  text-align: center;
+.category-list-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .category-list {
@@ -9,6 +11,7 @@
   overflow-x: auto;
   flex-wrap: nowrap;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .category-list button {
@@ -19,3 +22,13 @@
 .category-list button.selected {
   border: 5px solid orange; /* TODO: make button outline something that looks better */
 }
+
+/* .scroll-btn-left {
+  position: absolute;
+  left: 0;
+}
+
+.scroll-btn-right {
+  position: absolute;
+  right: 0;
+} */

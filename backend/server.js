@@ -20,16 +20,23 @@ app.get('/categories', (req, res) => {
 });
 
 app.get('/videos', (req, res) => {
-  const { category } = req.query;
+  const { category, search } = req.query;
+  let filteredVideos = data.videos;
 
-  // return all videos if no category query param
-  if (!category) {
-    return res.json(data.videos);
+  if (category) {
+    filteredVideos = filteredVideos.filter(
+      (video) => video.category.toLowerCase() === category.toLowerCase()
+    );
   }
 
-  const filteredVideos = data.videos.filter(
-    (video) => video.category.toLowerCase() === category.toLowerCase()
-  );
+  if (search && search.trim() !== '') {
+    const searchQuery = search.toLowerCase().trim();
+    filteredVideos = filteredVideos.filter((video) => {
+      const titleMatch = video.title.toLowerCase().includes(searchQuery);
+      const categoryMatch = video.category.toLowerCase().includes(searchQuery);
+      return titleMatch || categoryMatch;
+    });
+  }
 
   res.json(filteredVideos);
 });

@@ -1,0 +1,9 @@
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-bar input {
+  width: 50vw;
+}
