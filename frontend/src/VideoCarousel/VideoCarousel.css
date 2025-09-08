@@ -1,7 +1,9 @@
 .carousel-container {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+  position: relative;
 }
 
 .videos-container {
@@ -10,10 +12,10 @@
   overflow-x: auto;
   flex-wrap: nowrap;
   gap: 1rem;
-  margin-top: 2rem;
+  margin: 0 3rem;
 }
 
-.carousel-container button {
+.videos-container button {
   min-width: 7.5rem;
   min-height: 3rem;
 }

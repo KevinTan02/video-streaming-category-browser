@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: 0 3rem;
 }
 
 .category-list {
@@ -10,7 +11,7 @@
   gap: 1rem;
   overflow-x: auto;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 1rem;
 }
 
@@ -20,15 +21,5 @@
 }
 
 .category-list button.selected {
-  border: 5px solid orange; /* TODO: make button outline something that looks better */
+  background-color: grey;
 }
-
-/* .scroll-btn-left {
-  position: absolute;
-  left: 0;
-}
-
-.scroll-btn-right {
-  position: absolute;
-  right: 0;
-} */

@@ -12,9 +12,10 @@
 
 .header {
   display: flex;
-  align-items: row;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
+  padding-left: 1rem;
 }
 
 .close-button {
@@ -29,9 +30,12 @@
 
 .video-details {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  margin-left: 1rem;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+
+.video-details p {
+  margin: 0.25rem;
 }
 
 .video-details .label {

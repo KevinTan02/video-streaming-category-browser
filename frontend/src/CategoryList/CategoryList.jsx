@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import VideoCarousel from '../VideoCarousel/VideoCarousel';
+import { useScrollable } from '../hooks/useScrollable';
 import './CategoryList.css';
 
 const CategoryList = (props) => {
@@ -12,6 +13,7 @@ const CategoryList = (props) => {
 
   const [videos, setVideos] = useState([]);
   const categoryRef = useRef(null);
+  const showArrows = useScrollable(categoryRef, [videos]);
 
   const handleCategoryClick = (e) => {
     if (e.target.value !== selectedCategory) {
@@ -36,23 +38,34 @@ const CategoryList = (props) => {
     getVideosFromCategory();
   }, [selectedCategory]);
 
+  const getScrollAmount = () => {
+    const containerWidth = categoryRef.current.offsetWidth;
+    return containerWidth * 0.5;
+  };
+
   const scrollLeft = () => {
-    //todo: scroll by card width
-    categoryRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+    categoryRef.current.scrollBy({
+      left: -getScrollAmount(),
+      behavior: 'smooth',
+    });
   };
 
   const scrollRight = () => {
-    //todo: same as above
-    categoryRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+    categoryRef.current.scrollBy({
+      left: getScrollAmount(),
+      behavior: 'smooth',
+    });
   };
 
   return (
     <div>
       <h2 className="category-list-title">Categories</h2>
       <div className="category-list-container">
-        <button className="scroll-btn-left" onClick={scrollLeft}>
-          ←
-        </button>
+        {showArrows && (
+          <button className="scroll-btn-left" onClick={scrollLeft}>
+            ←
+          </button>
+        )}
         <div className="category-list" ref={categoryRef}>
           {categories.map((category) => (
             <button
@@ -65,9 +78,11 @@ const CategoryList = (props) => {
             </button>
           ))}
         </div>
-        <button className="scroll-btn-right" onClick={scrollRight}>
-          →
-        </button>
+        {showArrows && (
+          <button className="scroll-btn-right" onClick={scrollRight}>
+            →
+          </button>
+        )}
       </div>
       {selectedCategory && (
         <VideoCarousel

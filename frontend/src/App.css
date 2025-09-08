@@ -12,3 +12,21 @@
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 99;
 }
+
+.scroll-btn-left {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  left: 0;
+  position: absolute;
+}
+
+.scroll-btn-right {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  right: 0;
+  position: absolute;
+}

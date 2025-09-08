@@ -4,7 +4,7 @@ import './SearchResults.css';
 
 const SearchResults = (props) => {
   const { setSelectedVideoId, searchQuery, setSearchQuery } = props;
-  const [videos, setVideos] = useState();
+  const [videos, setVideos] = useState([]);
 
   const handleBack = () => {
     setSearchQuery('');
@@ -26,21 +26,19 @@ const SearchResults = (props) => {
     getSearchResults();
   }, [searchQuery]);
 
-  console.log('videos in searchResults', videos);
-
   return (
     <div className="search-results-container">
       <button className="back-button" onClick={handleBack}>
         ← Back
       </button>
       <p>Search results for: {searchQuery}</p>
-      {videos ? (
+      {videos.length !== 0 ? (
         <VideoCarousel
           setSelectedVideoId={setSelectedVideoId}
           videos={videos}
         />
       ) : (
-        <div> Loading Videos... </div>
+        <div> No videos found </div>
       )}
     </div>
   );
