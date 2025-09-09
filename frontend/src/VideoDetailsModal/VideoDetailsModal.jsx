@@ -67,7 +67,7 @@ const VideoDetailsModal = (props) => {
               </p>
             ) : (
               <button
-                data-testId="video-play-button"
+                data-testid="video-play-button"
                 className="play-button"
                 onClick={() => setIsPlaying(true)}
               >

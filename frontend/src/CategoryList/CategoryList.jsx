@@ -4,13 +4,10 @@ import { useScrollable } from '../hooks/useScrollable';
 import './CategoryList.css';
 
 const CategoryList = (props) => {
-  const {
-    categories,
-    selectedCategory,
-    setSelectedCategory,
-    setSelectedVideoId,
-  } = props;
+  const { setSelectedVideoId } = props;
 
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState();
   const [videos, setVideos] = useState([]);
   const categoryRef = useRef(null);
   const showArrows = useScrollable(categoryRef, [videos]);
@@ -21,6 +18,21 @@ const CategoryList = (props) => {
     }
     setSelectedCategory(e.target.value);
   };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/categories');
+      const data = await response.json();
+      setCategories(data);
+      setSelectedCategory(data[0]);
+    } catch (error) {
+      console.log('error fetching categories:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   const getVideosFromCategory = async () => {
     try {
@@ -35,7 +47,9 @@ const CategoryList = (props) => {
   };
 
   useEffect(() => {
-    getVideosFromCategory();
+    if (selectedCategory) {
+      getVideosFromCategory();
+    }
   }, [selectedCategory]);
 
   const getScrollAmount = () => {
@@ -57,7 +71,9 @@ const CategoryList = (props) => {
     });
   };
 
-  return (
+  return categories.length === 0 ? (
+    <div> Loading Categories...</div>
+  ) : (
     <div>
       <h2 className="category-list-title">Categories</h2>
       <div className="category-list-container">
