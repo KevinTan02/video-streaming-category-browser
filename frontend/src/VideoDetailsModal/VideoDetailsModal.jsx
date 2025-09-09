@@ -32,35 +32,42 @@ const VideoDetailsModal = (props) => {
     <div className="video-details-modal-container">
       {videoDetails ? (
         <>
-          <button className="close-button" onClick={handleCloseClick}>
+          <button
+            data-testid="close-button"
+            className="close-button"
+            onClick={handleCloseClick}
+          >
             x
           </button>
-          <div className="header">
+          <div data-testid="modal-title" className="header">
             <h1>Video Details</h1>
           </div>
           <div className="video-details">
-            <p>
+            <p data-testid="video-title">
               <span className="label">Title: </span>
               {videoDetails.title}
             </p>
-            <p>
+            <p data-testid="video-description">
               <span className="label">Description: </span>
               {videoDetails.description}
             </p>
-            <p>
+            <p data-testid="video-duration">
               <span className="label">Duration: </span>
               {videoDetails.duration}
             </p>
-            <p>
+            <p data-testid="video-category">
               <span className="label">Category: </span>
               {videoDetails.category}
             </p>
           </div>
           <div className="play-button-container">
             {isPlaying ? (
-              <p>Simulating video playing</p>
+              <p data-testid="video-playing-message">
+                Simulating video playing
+              </p>
             ) : (
               <button
+                data-testId="video-play-button"
                 className="play-button"
                 onClick={() => setIsPlaying(true)}
               >
@@ -70,7 +77,7 @@ const VideoDetailsModal = (props) => {
           </div>
         </>
       ) : (
-        <p>Loading...</p>
+        <p data-testid="play-loading-message">Loading...</p>
       )}
     </div>
   );
