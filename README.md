@@ -35,3 +35,11 @@ npm run dev
 ```
 
 The frontend app will run at: **http://localhost:3000**
+
+## Running Tests
+
+From the `frontend/` directory, run:
+
+```bash
+npm test
+```
