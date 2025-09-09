@@ -28,10 +28,14 @@ const SearchResults = (props) => {
 
   return (
     <div className="search-results-container">
-      <button className="back-button" onClick={handleBack}>
+      <button
+        data-testid="back-button"
+        className="back-button"
+        onClick={handleBack}
+      >
         ← Back
       </button>
-      <p>Search results for: {searchQuery}</p>
+      <p data-testid="search-query">Search results for: {searchQuery}</p>
       {videos.length !== 0 ? (
         <VideoCarousel
           setSelectedVideoId={setSelectedVideoId}

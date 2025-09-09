@@ -3,9 +3,7 @@ import VideoCarousel from '../VideoCarousel/VideoCarousel';
 import { useScrollable } from '../hooks/useScrollable';
 import './CategoryList.css';
 
-const CategoryList = (props) => {
-  const { setSelectedVideoId } = props;
-
+const CategoryList = ({ setSelectedVideoId }) => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState();
   const [videos, setVideos] = useState([]);
@@ -52,10 +50,7 @@ const CategoryList = (props) => {
     }
   }, [selectedCategory]);
 
-  const getScrollAmount = () => {
-    const containerWidth = categoryRef.current.offsetWidth;
-    return containerWidth * 0.5;
-  };
+  const getScrollAmount = () => categoryRef.current.offsetWidth * 0.5;
 
   const scrollLeft = () => {
     categoryRef.current.scrollBy({
@@ -72,30 +67,45 @@ const CategoryList = (props) => {
   };
 
   return categories.length === 0 ? (
-    <div> Loading Categories...</div>
+    <div data-testid="category-loading">Loading Categories...</div>
   ) : (
-    <div>
-      <h2 className="category-list-title">Categories</h2>
+    <div data-testid="category-list-container">
+      <h2 data-testid="category-list-title" className="category-list-title">
+        Categories
+      </h2>
       <div className="category-list-container">
         {showArrows && (
-          <button className="scroll-btn-left" onClick={scrollLeft}>
+          <button
+            data-testid="scroll-btn-left"
+            className="scroll-btn-left"
+            onClick={scrollLeft}
+          >
             ←
           </button>
         )}
-        <div className="category-list" ref={categoryRef}>
+        <div
+          className="category-list"
+          ref={categoryRef}
+          data-testid="category-list"
+        >
           {categories.map((category) => (
             <button
               key={category}
               className={category === selectedCategory ? 'selected' : ''}
               onClick={handleCategoryClick}
               value={category}
+              data-testid={`category-btn-${category}`}
             >
               {category}
             </button>
           ))}
         </div>
         {showArrows && (
-          <button className="scroll-btn-right" onClick={scrollRight}>
+          <button
+            data-testid="scroll-btn-right"
+            className="scroll-btn-right"
+            onClick={scrollRight}
+          >
             →
           </button>
         )}

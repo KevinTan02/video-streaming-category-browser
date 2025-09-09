@@ -31,7 +31,7 @@ const VideoCarousel = (props) => {
   };
 
   return (
-    <div className="carousel-container">
+    <div data-testid="carousel-container" className="carousel-container">
       {showArrows && (
         <button
           data-testid="scroll-left"
