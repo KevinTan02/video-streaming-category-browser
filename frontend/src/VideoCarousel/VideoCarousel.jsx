@@ -33,19 +33,36 @@ const VideoCarousel = (props) => {
   return (
     <div className="carousel-container">
       {showArrows && (
-        <button className="scroll-btn-left" onClick={scrollLeft}>
+        <button
+          data-testid="scroll-left"
+          className="scroll-btn-left"
+          onClick={scrollLeft}
+        >
           ←
         </button>
       )}
-      <div className="videos-container" ref={carouselRef}>
+      <div
+        data-testid="videos-container"
+        className="videos-container"
+        ref={carouselRef}
+      >
         {videos.map((video) => (
-          <button key={video.id} onClick={handleVideoClick} value={video.id}>
+          <button
+            data-testid={`video-${video.id}`}
+            key={video.id}
+            onClick={handleVideoClick}
+            value={video.id}
+          >
             {video.thumbnail}
           </button>
         ))}
       </div>
       {showArrows && (
-        <button className="scroll-btn-right" onClick={scrollRight}>
+        <button
+          data-testid="scroll-right"
+          className="scroll-btn-right"
+          onClick={scrollRight}
+        >
           →
         </button>
       )}
